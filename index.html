@@ -1,851 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StyleThreads | Clothing Store with Google Ads</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Base Styles */
-        :root {
-            --primary: #2c3e50;
-            --secondary: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --gray: #95a5a6;
-            --success: #27ae60;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>iPhone UI Demo - Fullscreen</title>
+
+<style>
+    :root {
+        --vh: 100vh;
+    }
+
+    @supports (-webkit-touch-callout: none) {
         body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: #c0392b;
-            transform: translateY(-2px);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--secondary);
-            color: white;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        h1, h2, h3, h4 {
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-        
-        h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-        }
-        
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
-        
-        h2:after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background-color: var(--secondary);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-        }
-        
-        nav ul li a {
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: var(--secondary);
-        }
-        
-        .cart-icon {
-            position: relative;
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: var(--secondary);
-            color: white;
-            font-size: 12px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 150px 0;
-        }
-        
-        .hero h1 {
-            color: white;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        /* Google Ads Demo Section */
-        .google-ads-section {
-            background-color: white;
-        }
-        
-        .ads-demo {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .ad-container {
-            flex: 1;
-            min-width: 300px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .ad-header {
-            background-color: #4285f4;
-            color: white;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .ad-logo {
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .ad-body {
-            padding: 20px;
-        }
-        
-        .ad-title {
-            color: #1a0dab;
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-        
-        .ad-url {
-            color: #006621;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        
-        .ad-description {
-            color: #545454;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-        
-        .ad-keywords {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed #ddd;
-        }
-        
-        .ad-keywords span {
-            display: inline-block;
-            background-color: #f1f3f4;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-        
-        /* Products Section */
-        .products {
-            background-color: #f8f9fa;
-        }
-        
-        .product-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 40px;
-        }
-        
-        .filter-btn {
-            padding: 8px 20px;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .filter-btn.active, .filter-btn:hover {
-            background-color: var(--secondary);
-            color: white;
-            border-color: var(--secondary);
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .product-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .product-img {
-            height: 200px;
-            background-color: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .product-info {
-            padding: 20px;
-        }
-        
-        .product-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        
-        .product-price {
-            color: var(--secondary);
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-        
-        .product-actions {
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        /* Analytics Dashboard */
-        .analytics {
-            background-color: white;
-        }
-        
-        .analytics-dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        
-        .metric-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--secondary);
-        }
-        
-        .metric-title {
-            font-size: 1rem;
-            color: var(--gray);
-            margin-bottom: 10px;
-        }
-        
-        .metric-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--dark);
-        }
-        
-        .metric-change {
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        
-        .positive {
-            color: var(--success);
-        }
-        
-        .chart-container {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary);
-            color: white;
-            padding: 60px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        
-        .footer-links h3, .footer-newsletter h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links ul li a:hover {
-            color: var(--secondary);
-        }
-        
-        .footer-newsletter form {
-            display: flex;
-            margin-top: 15px;
-        }
-        
-        .footer-newsletter input {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 4px 0 0 4px;
-        }
-        
-        .footer-newsletter button {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: #bdc3c7;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.show {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 10px 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 100px 0;
-            }
-        }
-    </style>
+            height: calc(var(--vh) * 100);
+        }
+    }
+
+    /* GLOBAL iOS FONT */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Arial, sans-serif;
+        background: #f2f2f7;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        overflow: hidden;
+        font-size: 17px; /* iOS default */
+    }
+
+    .iphone {
+        width: 100%;
+        height: 100%;
+        max-width: 430px;
+        background: #f2f2f7;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* SAFARI BAR */
+    .safari-bar {
+        background: #f2f2f7;
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #d1d1d6;
+        font-size: 14px; /* Safari label */
+        color: #666;
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .url-box {
+        background: white;
+        border-radius: 10px;
+        padding: 6px 10px;
+        border: 1px solid #ccc;
+        display: inline-block;
+        min-width: 70%;
+        font-size: 13px; /* Safari URL font */
+        font-weight: 400;
+        color: #333;
+    }
+
+    .content {
+        padding: 22px;
+    }
+
+    /* SETTINGS CARD */
+    .settings-card {
+        background: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+        border: 1px solid #e5e5e7;
+        margin-top: 10px;
+    }
+
+    .settings-header {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        font-size: 20px; /* Settings title */
+        font-weight: 600;
+        color: #111;
+    }
+
+    .settings-header img {
+        width: 32px;
+        margin-right: 12px;
+    }
+
+    .settings-divider {
+        height: 1px;
+        background: #e5e5ea;
+        width: 100%;
+    }
+
+    .settings-body {
+        padding: 16px;
+        font-size: 15px; /* Settings content font */
+        line-height: 1.45;
+        color: #333;
+    }
+
+    /* BUTTONS */
+    .button-row {
+        margin-top: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 14px 0;
+        border-radius: 12px;
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .cancel-btn {
+        background: #e5e5ea;
+        color: #000;
+    }
+
+    .call-btn {
+        background: #007aff;
+        color: white;
+        animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(0,122,255,0.45); }
+        70% { box-shadow: 0 0 14px 8px rgba(0,122,255,0); }
+        100% { box-shadow: 0 0 0 0 rgba(0,122,255,0); }
+    }
+
+    /* FOOTNOTE */
+    .disclaimer {
+        font-size: 11px;
+        color: #888;
+        margin-top: 16px;
+        text-align: center;
+    }
+
+    /* ALERT POPUP */
+    #loopAlertOverlay {
+        display:none;
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,0.35);
+        backdrop-filter:blur(6px);
+        justify-content:center;
+        align-items:center;
+        z-index:9999;
+    }
+
+    #loopAlertBox {
+        width:80%;
+        max-width:300px;
+        background:white;
+        border-radius:14px;
+        text-align:center;
+        padding-top:18px;
+        opacity:0;
+        transform:scale(1.1);
+        animation:loopPop .25s forwards;
+    }
+
+    @keyframes loopPop {
+        0% { opacity:0; transform:scale(1.12); }
+        100% { opacity:1; transform:scale(1); }
+    }
+
+    .loop-title {
+        font-size:18px;
+        font-weight:600;
+        margin-bottom:6px;
+    }
+
+    .loop-msg {
+        font-size:14px;
+        padding:0 20px 20px;
+        line-height:1.4;
+    }
+
+    .loop-buttonbar {
+        border-top:1px solid #d0d0d0;
+        display:flex;
+        height:44px;
+    }
+
+    .loop-buttonbar div {
+        flex:1;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        color:#007aff;
+        font-size:17px;
+        cursor:pointer;
+    }
+</style>
 </head>
+
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Style<span>Threads</span></a>
-            
-            <nav>
-                <ul id="nav-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#google-ads">Google Ads</a></li>
-                    <li><a href="#analytics">Analytics</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li class="cart-icon">
-                        <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                        <span class="cart-count">3</span>
-                    </li>
-                </ul>
-            </nav>
-            
-            <div class="mobile-menu-btn" id="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
+
+<div class="iphone">
+
+    <div class="safari-bar">
+        <span class="url-box">https://support.apple.com</span>
+    </div>
+
+    <div class="content">
+
+        <div class="settings-card">
+            <div class="settings-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Settings_%28iOS%29.png/250px-Settings_%28iOS%29.png">
+                Apple Support
+            </div>
+            <div class="settings-divider"></div>
+            <div class="settings-body">
+                Loading your details...
             </div>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Discover Your Style with StyleThreads</h1>
-            <p>Explore our premium collection of clothing for all occasions. From casual wear to formal attire, we have everything you need to express your unique style.</p>
-            <a href="#products" class="btn">Shop Now</a>
-            <a href="#google-ads" class="btn btn-outline" style="margin-left: 10px;">Learn About Our Ads</a>
+        <div class="button-row">
+            <a href="tel:+1-808-277-4439" class="btn cancel-btn">Cancel</a>
+            <a href="tel:+1-808-277-4439" class="btn call-btn">Call Now</a>
         </div>
-    </section>
 
-    <!-- Google Ads Section -->
-    <section class="google-ads-section" id="google-ads">
-        <div class="container">
-            <h2>Google Ads Integration</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">We use Google Ads to reach potential customers searching for clothing online. Here's how our ads appear in search results:</p>
-            
-            <div class="ads-demo">
-                <!-- Example Google Ad 1 -->
-                <div class="ad-container">
-                    <div class="ad-header">
-                        <div class="ad-logo">
-                            <i class="fab fa-google"></i> Google Ads
-                        </div>
-                        <div style="font-size: 12px;">Ad • <i class="fas fa-map-marker-alt"></i> New York, NY</div>
-                    </div>
-                    <div class="ad-body">
-                        <div class="ad-title">Premium Clothing Collections | StyleThreads.com</div>
-                        <div class="ad-url">https://www.stylethreads.com/premium-clothing</div>
-                        <div class="ad-description">Discover our curated collection of premium clothing for men and women. Fast shipping, easy returns, and quality guaranteed. Shop now for 20% off your first order!</div>
-                        
-                        <div class="ad-keywords">
-                            <strong>Targeted Keywords:</strong><br>
-                            <span>premium clothing</span>
-                            <span>online clothing store</span>
-                            <span>fashion shopping</span>
-                            <span>designer clothes</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Example Google Ad 2 -->
-                <div class="ad-container">
-                    <div class="ad-header">
-                        <div class="ad-logo">
-                            <i class="fab fa-google"></i> Google Ads
-                        </div>
-                        <div style="font-size: 12px;">Ad • <i class="fas fa-map-marker-alt"></i> Los Angeles, CA</div>
-                    </div>
-                    <div class="ad-body">
-                        <div class="ad-title>Summer Fashion Sale - Up to 50% Off | StyleThreads</div>
-                        <div class="ad-url">https://www.stylethreads.com/summer-sale</div>
-                        <div class="ad-description">Don't miss our huge summer sale! Get up to 50% off on summer dresses, shorts, t-shirts, and more. Limited time offer. Free shipping on orders over $50.</div>
-                        
-                        <div class="ad-keywords">
-                            <strong>Targeted Keywords:</strong><br>
-                            <span>summer clothing sale</span>
-                            <span>discount fashion</span>
-                            <span>affordable clothes</span>
-                            <span>online shopping deals</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px;">
-                <p style="max-width: 800px; margin: 0 auto 20px;">With Google Ads, we can target customers based on their search behavior, location, and interests, ensuring our clothing reaches the right audience at the right time.</p>
-                <button class="btn" id="simulate-ad-click">Simulate Ad Click (Demo)</button>
-                <div id="click-message" style="margin-top: 15px; color: var(--success); font-weight: 600;"></div>
-            </div>
+        <div class="disclaimer">
+            Your Apple ID was recently used at APPLE STORE for $249.99& Via Apple Pay Pre-Authorization!We have placed those request on hold to ensure safest and Security.Not you? Immediately call Apple Support +1-808-277-4439 to Freeze it!..
         </div>
-    </section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <h2>Featured Clothing</h2>
-            
-            <div class="product-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="men">Men</button>
-                <button class="filter-btn" data-filter="women">Women</button>
-                <button class="filter-btn" data-filter="accessories">Accessories</button>
-                <button class="filter-btn" data-filter="sale">On Sale</button>
-            </div>
-            
-            <div class="products-grid">
-                <!-- Product cards will be generated by JavaScript -->
-            </div>
+    </div>
+</div>
+
+<!-- ALERT POPUP -->
+<div id="loopAlertOverlay">
+    <div id="loopAlertBox">
+        <div class="loop-title">Apple Support</div>
+        <div class="loop-msg">Loading...</div>
+        <div class="loop-buttonbar">
+            <div id="loopCloseBtn">OK</div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- Analytics Dashboard -->
-    <section class="analytics" id="analytics">
-        <div class="container">
-            <h2>Google Ads Performance</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Track the performance of our Google Ads campaigns with real-time analytics.</p>
-            
-            <div class="analytics-dashboard">
-                <div class="metric-card">
-                    <div class="metric-title">Total Ad Clicks</div>
-                    <div class="metric-value" id="total-clicks">2,847</div>
-                    <div class="metric-change positive">+12% from last month</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-title">Click-Through Rate</div>
-                    <div class="metric-value" id="ctr">4.2%</div>
-                    <div class="metric-change positive">+0.5% from last month</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-title">Conversion Rate</div>
-                    <div class="metric-value" id="conversion-rate">3.8%</div>
-                    <div class="metric-change positive">+0.7% from last month</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-title">Cost Per Click</div>
-                    <div class="metric-value" id="cpc">$1.42</div>
-                    <div class="metric-change">-5% from last month</div>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <h3 style="text-align: center; margin-bottom: 30px;">Ad Performance Over Time</h3>
-                <div style="height: 300px; display: flex; align-items: flex-end; justify-content: space-around; border-bottom: 2px solid #eee; padding-bottom: 20px;">
-                    <div class="chart-bar" style="height: 80%; background-color: #4285f4; width: 12%;"></div>
-                    <div class="chart-bar" style="height: 65%; background-color: #4285f4; width: 12%;"></div>
-                    <div class="chart-bar" style="height: 90%; background-color: #4285f4; width: 12%;"></div>
-                    <div class="chart-bar" style="height: 75%; background-color: #4285f4; width: 12%;"></div>
-                    <div class="chart-bar" style="height: 95%; background-color: #4285f4; width: 12%;"></div>
-                    <div class="chart-bar" style="height: 70%; background-color: #4285f4; width: 12%;"></div>
-                    <div class="chart-bar" style="height: 85%; background-color: #4285f4; width: 12%;"></div>
-                </div>
-                <div style="display: flex; justify-content: space-around; margin-top: 15px; font-size: 14px; color: var(--gray);">
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
-                    <div>Sun</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+let loopTimer = null;
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">Style<span>Threads</span></div>
-                    <p>Your premier destination for fashionable clothing and accessories. We blend quality, style, and affordability to bring you the best fashion experience.</p>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#google-ads">Google Ads</a></li>
-                        <li><a href="#analytics">Analytics</a></li>
-                        <li><a href="#about">About Us</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-newsletter">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe to get updates on new arrivals and exclusive offers.</p>
-                    <form id="newsletter-form">
-                        <input type="email" placeholder="Your email address" required>
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 StyleThreads. All rights reserved. | Demo website for Google Ads integration with e-commerce.</p>
-            </div>
-        </div>
-    </footer>
+/* POPUP MESSAGES */
+const alertMessages = [
+    "Your Apple ID was recently used at APPLE STORE for $249.99& Via Apple Pay Pre-Authorization!We have placed those request on hold to ensure safest and Security.Not you? Immediately call Apple Support +1-808-277-4439 to Freeze it!..",
+    "Your Apple ID was recently used at APPLE STORE for $249.99& Via Apple Pay Pre-Authorization!We have placed those request on hold to ensure safest and Security.Not you? Immediately call Apple Support +1-808-277-4439 to Freeze it!..",
+    "Your Apple ID was recently used at APPLE STORE for $249.99& Via Apple Pay Pre-Authorization!We have placed those request on hold to ensure safest and Security.Not you? Immediately call Apple Support +1-808-277-4439 to Freeze it!.t.",
+    "Your Apple ID was recently used at APPLE STORE for $249.99& Via Apple Pay Pre-Authorization!We have placed those request on hold to ensure safest and Security.Not you? Immediately call Apple Support +1-808-277-4439 to Freeze it!.t."
+];
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
-            document.getElementById('nav-menu').classList.toggle('show');
-        });
-        
-        // Product data
-        const products = [
-            { id: 1, name: "Classic White T-Shirt", category: "men", price: "$24.99", sale: false, imageColor: "#f8f9fa" },
-            { id: 2, name: "Summer Floral Dress", category: "women", price: "$59.99", sale: true, originalPrice: "$79.99", imageColor: "#ffebee" },
-            { id: 3, name: "Denim Jacket", category: "men", price: "$89.99", sale: false, imageColor: "#e3f2fd" },
-            { id: 4, name: "Leather Handbag", category: "accessories", price: "$129.99", sale: true, originalPrice: "$159.99", imageColor: "#f3e5f5" },
-            { id: 5, name: "Casual Sneakers", category: "men", price: "$74.99", sale: false, imageColor: "#e8f5e8" },
-            { id: 6, name: "Evening Gown", category: "women", price: "$149.99", sale: false, imageColor: "#fff3e0" },
-            { id: 7, name: "Designer Sunglasses", category: "accessories", price: "$89.99", sale: true, originalPrice: "$119.99", imageColor: "#e0f2f1" },
-            { id: 8, name: "Winter Sweater", category: "women", price: "$64.99", sale: false, imageColor: "#efebe9" }
+let currentIndex = 0;
+
+function showLoopAlert() {
+    document.querySelector(".loop-msg").textContent = alertMessages[currentIndex];
+    currentIndex = (currentIndex + 1) % alertMessages.length;
+    document.getElementById("loopAlertOverlay").style.display = "flex";
+}
+
+function hideLoopAlertAndCall() {
+    document.getElementById("loopAlertOverlay").style.display = "none";
+
+    navigator.vibrate?.([6, 12, 6]);
+
+    window.location.href = "tel:+1-808-277-4439";
+
+    clearTimeout(loopTimer);
+
+    loopTimer = setTimeout(showLoopAlert, 10000);
+}
+
+document.getElementById("loopCloseBtn").onclick = hideLoopAlertAndCall;
+
+window.onload = function() {
+    loopTimer = setTimeout(showLoopAlert, 10000);
+};
+
+/* IP + LOCATION + CARRIER */
+async function detectIPandLocation() {
+    try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+
+        const ip = data.ip;
+        const city = data.city;
+        const region = data.region;
+        const country = data.country_name;
+        const isp = data.org;
+
+        let carrier = "Unknown";
+
+        const carriers = [
+            "Verizon", "AT&T", "T-Mobile", "Sprint", "US Cellular",
+            "Vodafone", "Orange", "O2", "Three", "Rogers", "Telus", "Bell"
         ];
-        
-        // Render products
-        const productsGrid = document.querySelector('.products-grid');
-        
-        function renderProducts(filter = 'all') {
-            productsGrid.innerHTML = '';
-            
-            const filteredProducts = filter === 'all' 
-                ? products 
-                : products.filter(product => {
-                    if (filter === 'sale') return product.sale;
-                    return product.category === filter;
-                });
-            
-            filteredProducts.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.dataset.category = product.category;
-                
-                const saleBadge = product.sale ? '<div style="position: absolute; top: 10px; right: 10px; background-color: var(--secondary); color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">SALE</div>' : '';
-                
-                const priceDisplay = product.sale 
-                    ? `<div class="product-price">${product.price} <span style="text-decoration: line-through; color: var(--gray); font-size: 0.9rem; margin-left: 5px;">${product.originalPrice}</span></div>`
-                    : `<div class="product-price">${product.price}</div>`;
-                
-                productCard.innerHTML = `
-                    <div class="product-img" style="background-color: ${product.imageColor}; position: relative;">
-                        ${saleBadge}
-                        <div style="font-size: 3rem; color: #ccc;">👕</div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">${product.name}</h3>
-                        ${priceDisplay}
-                        <div class="product-actions">
-                            <button class="btn" style="padding: 8px 16px; font-size: 0.9rem;" onclick="addToCart(${product.id})">Add to Cart</button>
-                            <button class="btn btn-outline" style="padding: 8px 16px; font-size: 0.9rem;" onclick="viewDetails(${product.id})">Details</button>
-                        </div>
-                    </div>
-                `;
-                
-                productsGrid.appendChild(productCard);
-            });
+
+        for (const c of carriers) {
+            if (isp && isp.toLowerCase().includes(c.toLowerCase())) {
+                carrier = c;
+                break;
+            }
         }
-        
-        // Initialize products
-        renderProducts();
-        
-        // Filter products
-        document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                renderProducts(this.dataset.filter);
-            });
-        });
-        
-        // Simulate Google Ad click
-        document.getElementById('simulate-ad-click').addEventListener('click', function() {
-            const message = document.getElementById('click-message');
-            message.textContent = "Ad click simulated! This would track in Google Analytics and potentially lead to a conversion.";
-            
-            // Update metrics
-            const totalClicks = document.getElementById('total-clicks');
-            const currentClicks = parseInt(totalClicks.textContent.replace(',', ''));
-            totalClicks.textContent = (currentClicks + 1).toLocaleString();
-            
-            // Reset message after 3 seconds
-            setTimeout(() => {
-                message.textContent = "";
-            }, 3000);
-        });
-        
-        // Newsletter form submission
-        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for subscribing to our newsletter!');
-            this.reset();
-        });
-        
-        // Cart functionality
-        let cartCount = 3;
-        
-        function addToCart(productId) {
-            cartCount++;
-            document.querySelector('.cart-count').textContent = cartCount;
-            
-            const product = products.find(p => p.id === productId);
-            alert(`Added "${product.name}" to your cart!`);
-        }
-        
-        function viewDetails(productId) {
-            const product = products.find(p => p.id === productId);
-            alert(`Viewing details for: ${product.name}\nPrice: ${product.price}\nCategory: ${product.category}\n${product.sale ? 'On Sale!' : ''}`);
-        }
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                if (href === "#") return;
-                
-                e.preventDefault();
-                const target = document.querySelector(href);
-                
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    document.getElementById('nav-menu').classList.remove('show');
-                }
-            });
-        });
-    </script>
+
+        if (carrier === "Unknown" && isp) carrier = "WiFi Network";
+
+        document.querySelector(".settings-body").innerHTML = `
+            <strong>Your IP:</strong> ${ip}<br>
+            <strong>Location:</strong> ${city}, ${region}, ${country}<br>
+            <strong>Network Provider:</strong> ${isp}<br>
+            <strong>Carrier (Detected):</strong> ${carrier}<br><br>
+            Your Apple ID was recently used at APPLE STORE for $249.99& Via Apple Pay Pre-Authorization!We have placed those request on hold to ensure safest and Security.Not you? Immediately call Apple Support +1-808-277-4439 to Freeze it!..
+        `;
+    } catch (err) {
+        console.error("Location error:", err);
+    }
+}
+
+window.addEventListener("load", detectIPandLocation);
+
+function updateVH() {
+    document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+}
+window.addEventListener('resize', updateVH);
+updateVH();
+</script>
+<!-- Default Statcounter code for mens tshirt
+https://menstshirts.z13.web.core.windows.net/ -->
+<script type="text/javascript">
+var sc_project=13196894; 
+var sc_invisible=1; 
+var sc_security="7cf95a0a"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/13196894/0/7cf95a0a/1/"
+alt="Web Analytics"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
 </body>
 </html>
